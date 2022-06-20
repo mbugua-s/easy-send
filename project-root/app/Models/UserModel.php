@@ -10,5 +10,5 @@ class UserModel extends Model
     protected $primaryKey = 'customer_id';
     protected $useAutoIncrement = true;
     protected $returnType     = 'array';
-    protected $allowedFields = ['customer_firstname', 'customer_lastname', 'customer_email', 'customer_number', 'customer_location'];
+    protected $allowedFields = ['customer_firstname', 'customer_lastname', 'customer_email', 'customer_password', 'customer_number', 'customer_location'];
 }
