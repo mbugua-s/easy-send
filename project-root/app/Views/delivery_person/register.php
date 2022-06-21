@@ -2,7 +2,7 @@
 
 <?= $this->section('main_content') ?>
     <h2>Register</h2>
-    <form method = 'POST' action = '/customer/register'>
+    <form method = 'POST' action = '/deliveryperson/register' enctype = "multipart/form-data">
         <label>First Name: </label>
         <input type = "text" name = "register_firstname">
         <label>Last Name: </label>
@@ -15,6 +15,10 @@
         <input type = "number" name = "register_number">
         <label>Your Address: </label>
         <input type = "text" name = "register_location">
+        <label>Your Profile Photo: </label>
+        <input type = "file" name = "register_photo">
+        <label>Your City of Operation: </label>
+        <input type = "text" name = "register_city">
 
         <input type = "submit" name = "register_submit" value = "REGISTER">
     </form>
