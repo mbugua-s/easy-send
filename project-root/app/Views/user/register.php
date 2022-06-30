@@ -1,11 +1,7 @@
 <?= $this->extend('layouts/main.php') ?>
 
 <?= $this->section('main_content') ?>
-    <link rel = "stylesheet" href = "/CSS/reg.css">
-<?= $this->endSection() ?>
-
-<?= $this->section('main_content') ?>
-    <h2 class="mb-3 col-4 row justify-content-center">Register</h2>
+    <h2>Register Page</h2>
     <form method = 'POST' action = '/customer/register'>
         
         <div class="row justify-content-center">
