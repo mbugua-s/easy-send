@@ -35,7 +35,7 @@ class User extends BaseController
                         break;
 
                     case 3:
-                        return view('delivery_person');
+                        return view('delivery_person/home');
                         break;
                 }
 
@@ -78,44 +78,6 @@ class User extends BaseController
         {
             return view('user/log_in');
         } */
-    }
-
-    public function register()
-    {
-        /* if(isset($_POST['register_submit']))
-        {
-            $usermodel = new UserModel();
-            $password = password_hash($_POST['register_password'], PASSWORD_DEFAULT);
-
-            $data = 
-            [
-                'role_id' => 1,
-                'user_firstname' => $_POST['register_firstname'],
-                'user_lastname' => $_POST['register_lastname'],
-                'user_email' => $_POST['register_email'],
-                'user_password' => $password,
-                'user_number' => $_POST['register_number'],
-                'user_location' => $_POST['register_location']
-            ];
-
-            $is_registered = $usermodel->insert($data, true);
-
-            if($is_registered)
-            {
-                echo "User Registered";
-            }
-
-            else
-            {
-                echo "Registration Failed";
-            }
-        }
-
-        else
-        {
-            return view('user/register');
-        } */
-        
     }
 
     public function logOut()
