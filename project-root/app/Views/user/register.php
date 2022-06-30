@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main.php') ?>
 
 <?= $this->section('main_content') ?>
-    <h2>Register</h2>
+    <h2>Register Page</h2>
     <form method = 'POST' action = '/customer/register'>
         <label>First Name: </label>
         <input type = "text" name = "register_firstname">
