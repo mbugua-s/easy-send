@@ -1,7 +1,7 @@
 <?= $this->extend('layouts/main.php') ?>
 
 <?= $this->section('main_content') ?>
-    <h2>Registration</h2>
+    <h2>Registration Page</h2>
     <form method = 'POST' action = '/customer/register'>
         
         <div class="row justify-content-center">
