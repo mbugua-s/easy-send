@@ -76,6 +76,19 @@
   }
 }
 
+.btn1
+    {
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        font-weight: bold;
+        height: 50px;
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-decoration: none;
+    }
+
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
