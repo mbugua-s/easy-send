@@ -24,10 +24,19 @@ class User extends BaseController
             {
                 $session = session();
 
+                $user_data = [
+                    'user_id' => $user[0]['user_id'],
+                    'user_firstname'  => $user[0]['user_firstname'],
+                    'user_lastname'  => $user[0]['user_lastname']
+                ];
+                
+                $session->set($user_data);
+
                 switch($user[0]['role_id']) // Redirecting the different types of users to their respective landing pages
                 {
                     case 1:
-                        return view('user/home');
+                        $customer = new Customer;
+                        return $customer->placeOrder();
                         break;
 
                     case 2:
@@ -53,31 +62,6 @@ class User extends BaseController
         {
             return view('user/log_in');
         }
-        
-        /* if(isset($_POST['login_submit']))
-        {
-            $usermodel = new UserModel();
-            $email = $_POST['login_email'];
-
-            $user = $usermodel->where('customer_email', $email)->find();
-
-            if(password_verify($_POST['login_password'], $user[0]['customer_password']))
-            {
-                $session = session();
-                return view('user/home');
-            }
-
-            else
-            {
-                echo "<script>alert('Login Failed')</script>";
-                return view('user/log_in');
-            }
-        }
-        
-        else
-        {
-            return view('user/log_in');
-        } */
     }
 
     public function logOut()
@@ -85,6 +69,11 @@ class User extends BaseController
         $session = session();
         $session->destroy();
         return view('user/log_in');
+    }
+
+    public function ps()
+    {
+        echo password_hash('2345', PASSWORD_DEFAULT);
     }
 
 }

@@ -54,6 +54,16 @@ class DeliveryPerson extends User
 
                 if($is_registered)
                 {
+                    $session = session();
+                
+                    $user_data = [
+                        'user_id' => $is_registered,
+                        'user_firstname'  => $_POST['register_firstname'],
+                        'user_lastname'  => $_POST['register_lastname']
+                    ];
+
+                    $session->set($user_data);
+                    
                     echo "Delivery Person registered";
                 }
             }

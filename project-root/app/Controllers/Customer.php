@@ -38,12 +38,24 @@ class Customer extends User
 
             if($is_registered)
             {
-                echo "User Registered";
+                $session = session();
+                
+                $user_data = [
+                    'user_id' => $is_registered,
+                    'user_firstname'  => $_POST['register_firstname'],
+                    'user_lastname'  => $_POST['register_lastname']
+                ];
+
+                $session->set($user_data);
+
+                $customer = new Customer;
+                return $customer->placeOrder();
             }
 
             else
             {
-                echo "Registration Failed";
+                echo "<script>alert('Login Failed')</script>";
+                return view('user/log_in');
             }
         }
 
@@ -52,5 +64,12 @@ class Customer extends User
             return view('user/register');
         }
         
+    }
+
+    public function placeOrder()
+    {
+        $session = session();
+        
+        return view('customer/place_order');
     }
 }
