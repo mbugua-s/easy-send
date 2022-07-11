@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Models\OrderModel;
 use App\Models\UserModel;
 
 class Customer extends User
 {
-    public function register()
+    public function register() // Register a customer
     {
         if(isset($_POST['register_submit']))
         {
@@ -34,11 +35,11 @@ class Customer extends User
                 'user_location' => $_POST['register_location']
             ];
 
-            $is_registered = $usermodel->insert($data, true);
+            $is_registered = $usermodel->insert($data, true); 
 
-            if($is_registered)
+            if($is_registered) // Successful registration
             {
-                $session = session();
+                $session = session(); // Add customer info to the session
                 
                 $user_data = [
                     'user_id' => $is_registered,
@@ -52,24 +53,60 @@ class Customer extends User
                 return $customer->placeOrder();
             }
 
-            else
+            else // Failed registration
             {
                 echo "<script>alert('Login Failed')</script>";
                 return view('user/log_in');
             }
         }
 
-        else
+        else // Customer viewing the page for the first time
         {
             return view('user/register');
         }
         
     }
 
-    public function placeOrder()
+    public function placeOrder() // Request a delivery order
     {
         $session = session();
-        
-        return view('customer/place_order');
+
+        if(isset($_POST['order_submit'])) // Order requested
+        {
+            $ordermodel = new OrderModel();
+
+            $data = 
+            [
+                'user_id' => $session->get('user_id'),
+                'pickup_location' => $_POST['order_pickup'],
+                'destination_location' => $_POST['order_destination'],
+                'status' => 'pending',
+                'is_paid' => false
+            ];
+
+            $is_placed = $ordermodel->insert($data, true);
+
+            if($is_placed) // Order placement successful
+            {
+                $session->set('order_id', $is_placed);
+                echo "Order placed";
+            }
+
+            else // Order placement failed
+            {
+                echo "<script>alert('Order failed')</script>";
+                return view('user/place_order');
+            }
+        }
+
+        else // Customer viewing the page for the first time
+        {
+            return view('customer/place_order');
+        } 
+    }
+
+    public function trackOrder()
+    {
+        return view('customer/track_order');
     }
 }
