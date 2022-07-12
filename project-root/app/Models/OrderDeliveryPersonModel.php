@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class OrderModel extends Model
+class OrderDeliveryPersonModel extends Model
 {
-    protected $table      = 'orders';
-    protected $primaryKey = 'order_id';
+    protected $table      = 'order_deliveryperson';
+    protected $primaryKey = 'order_deliveryperson_id';
 
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['user_id', 'pickup_location', 'destination_location', 'status', 'is_paid'];
+    protected $allowedFields = ['order_id', 'dp_id'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';
