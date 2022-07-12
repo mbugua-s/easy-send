@@ -61,7 +61,7 @@ class Customer extends User
 
         else
         {
-            return view('user/register');
+            return view('customer/register');
         }
         
     }
