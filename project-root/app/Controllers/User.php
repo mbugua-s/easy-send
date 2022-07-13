@@ -14,59 +14,51 @@ class User extends BaseController
 
     public function logIn() // Log in customers, admins and delivery persons
     {
-        if(isset($_POST['login_submit'])) // User has submitted login details
+        $usermodel = new UserModel();
+        $email = $_POST['login_email'];
+
+        $user = $usermodel->where('user_email', $email)->find();
+
+        if(password_verify($_POST['login_password'], $user[0]['user_password'])) // If user has the correct credentials, save their data in the session
         {
-            $usermodel = new UserModel();
-            $email = $_POST['login_email'];
+            $session = session();
 
-            $user = $usermodel->where('user_email', $email)->find();
+            $user_data = [
+                'user_id' => $user[0]['user_id'],
+                'user_role' => $user[0]['role_id'],
+                'user_firstname'  => $user[0]['user_firstname'],
+                'user_lastname'  => $user[0]['user_lastname']
+            ];
+            
+            $session->set($user_data);
 
-            if(password_verify($_POST['login_password'], $user[0]['user_password'])) // If user has the correct credentials, save their data in the session
+            // Redirecting users to their respective landing pages
+            switch($user[0]['role_id'])
             {
-                $session = session();
+                case 1:
+                    $customer = new Customer;
+                    return $customer->placeOrder();
+                    break;
 
-                $user_data = [
-                    'user_id' => $user[0]['user_id'],
-                    'user_role' => $user[0]['role_id'],
-                    'user_firstname'  => $user[0]['user_firstname'],
-                    'user_lastname'  => $user[0]['user_lastname']
-                ];
-                
-                $session->set($user_data);
+                case 2:
+                    return view('user/home');
+                    break;
 
-                // Redirecting users to their respective landing pages
-                switch($user[0]['role_id'])
-                {
-                    case 1:
-                        $customer = new Customer;
-                        return $customer->placeOrder();
-                        break;
-
-                    case 2:
-                        return view('user/home');
-                        break;
-
-                    case 3:
-                        $deliveryPersonModel = new DeliveryPersonModel(); // Adding the delivery person's dp_id to the session
-                        $dp_id = ($deliveryPersonModel->where('user_id', $user[0]['user_id'])->find())[0]['dp_id'];
-                        $session->set('dp_id', $dp_id);
-                        $deliveryperson = new Deliveryperson();
-                        return $deliveryperson->viewAvailableOrders();
-                        break;
-                }
-
-                return view('user/home');
+                case 3:
+                    $deliveryPersonModel = new DeliveryPersonModel(); // Adding the delivery person's dp_id to the session
+                    $dp_id = ($deliveryPersonModel->where('user_id', $user[0]['user_id'])->find())[0]['dp_id'];
+                    $session->set('dp_id', $dp_id);
+                    $deliveryperson = new Deliveryperson();
+                    return $deliveryperson->viewAvailableOrders();
+                    break;
             }
 
-            else // Failed login
-            {
-                echo "<script>alert('Login Failed')</script>";
-                return view('user/log_in');
-            }
+            return view('user/home');
         }
-        
-        else // User viewing the log_in page for the first time
+
+        else // Failed login
         {
+            echo "<script>alert('Login Failed')</script>";
             return view('user/log_in');
         }
     }

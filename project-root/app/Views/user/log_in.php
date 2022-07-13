@@ -1,5 +1,10 @@
 <?= $this->extend('layouts/main.php') ?>
 
+<?= $this->section('css') ?>
+    <link rel="stylesheet" type="text/css" href="/CSS/reg.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+<?= $this->endSection() ?>
+
 <?= $this->section('main_content') ?>
     
 <body>
