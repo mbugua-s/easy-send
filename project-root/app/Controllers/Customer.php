@@ -89,7 +89,7 @@ class Customer extends User
             if($is_placed) // Order placement successful
             {
                 $session->set('order_id', $is_placed);
-                echo "Order placed";
+                return $this->trackOrder();
             }
 
             else // Order placement failed
@@ -107,6 +107,42 @@ class Customer extends User
 
     public function trackOrder()
     {
-        return view('customer/track_order');
+        $session = session();
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('orders');
+        $builder->select('pickup_location, destination_location, created_at, status');
+        $builder->where('user_id', $session->get('user_id'));
+        $builder->orderBy('order_id', 'DESC');
+        $builder->limit(1);
+        $query = $builder->get();
+
+        foreach($query->getResultArray() as $row)
+        {
+            $order_details[] = $row;
+        }
+
+        $order_details = $order_details[0];
+
+        if($order_details['status'] == 'accepted')
+        {
+            $builder = $db->table('order_deliveryperson');
+            $builder->select('dp_profile_photo, user_firstname, user_lastname');
+            $builder->join('delivery_person', 'order_deliveryperson.dp_id = delivery_person.dp_id', 'inner');
+            $builder->join('user', 'delivery_person.user_id = user.user_id', 'inner');
+            $builder->where('order_id', $session->get('order_id'));
+            $query = $builder->get();
+
+            foreach($query->getResultArray() as $row)
+            {
+                $dp_details[] = $row;
+            }
+
+            $user_order['dp'] = $dp_details[0];
+        }
+
+        $user_order['order'] = $order_details;
+
+        return view('customer/track_order', $user_order);
     }
 }
