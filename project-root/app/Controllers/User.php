@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\DeliveryPersonModel;
+use App\Models\OrderModel;
 use App\Models\UserModel;
 
 class User extends BaseController
@@ -39,7 +40,18 @@ class User extends BaseController
                 {
                     case 1:
                         $customer = new Customer;
-                        return $customer->placeOrder();
+                        
+                        if($this->checkForExistingCustomerOrder($user[0]['user_id'])) // If they have an existing order, take them to the track order page, otherwise take them to the place order page
+                        {
+                            $session->set('order_id', $this->checkForExistingCustomerOrder($user[0]['user_id']));
+                            return $customer->trackOrder();
+                        }
+                        
+                        else
+                        {
+                            return $customer->placeOrder();
+                        }
+                        
                         break;
 
                     case 2:
@@ -51,11 +63,20 @@ class User extends BaseController
                         $dp_id = ($deliveryPersonModel->where('user_id', $user[0]['user_id'])->find())[0]['dp_id'];
                         $session->set('dp_id', $dp_id);
                         $deliveryperson = new Deliveryperson();
-                        return $deliveryperson->viewAvailableOrders();
+
+                        if($this->checkForExistingDPOrder($dp_id)) // If they have an existing order, take them to the fulfill order page, otherwise take them to the available orders page
+                        {
+                            $session->set('order_id', $this->checkForExistingDPOrder($dp_id));
+                            return $deliveryperson->fulfillOrder();
+                        }
+
+                        else
+                        {
+                            return $deliveryperson->viewAvailableOrders();
+                        }
+
                         break;
                 }
-
-                return view('user/home');
             }
 
             else // Failed login
@@ -153,4 +174,52 @@ class User extends BaseController
         }
     }
 
+    protected function checkForExistingCustomerOrder($user_id) // Check whether the customer/admin has an ongoing order. If they do, add the order_id to the session
+    {
+        $orderModel = new OrderModel();
+        $existing_order = $orderModel->where('user_id', $user_id)
+                                     ->where('status', 'accepted')
+                                     ->orWhere('status', 'pending')
+                                     ->orderBy('order_id', 'DESC')
+                                     ->findAll(1);
+        
+        if($existing_order)
+        {
+            return $existing_order[0]['order_id'];
+        }
+
+        else
+        {
+            return false;
+        }
+    }
+
+    private function checkForExistingDPOrder($dp_id) // Check whether the delivery person has an ongoing order. If they do, add the order_id to the session
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('orders');
+        $builder->select('orders.order_id');
+        $builder->join('order_deliveryperson', 'orders.order_id = order_deliveryperson.order_id');
+        $builder->where('dp_id', $dp_id);
+        $builder->where('status', 'pending');
+        $builder->orWhere('status', 'accepted');
+        $builder->orderBy('orders.order_id', 'DESC');
+        $builder->limit(1);
+        $query = $builder->get();
+
+        foreach($query->getResultArray() as $row)
+        {
+            $order[] = $row;
+        }
+
+        if($order[0])
+        {
+            return $order[0]['order_id'];
+        }
+
+        else
+        {
+            return false;
+        }
+    }
 }

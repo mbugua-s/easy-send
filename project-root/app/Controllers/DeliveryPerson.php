@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\DeliveryPersonModel;
+use App\Models\OrderDeliveryPersonModel;
 use App\Models\OrderModel;
 use App\Models\UserModel;
 
@@ -72,6 +73,7 @@ class DeliveryPerson extends User
                 else // Inserting the delivery person specific data failed
                 {
                     echo '<script>alert("Registration Failed")</script>';
+                    return view('delivery_person/register');
                 }
             }
 
@@ -174,16 +176,77 @@ class DeliveryPerson extends User
         }
     }
 
-    public function viewAvailableOrders()
+    public function viewAvailableOrders() // Get all pending orders and display them to the delivery person
     {
-        $ordermodel = new OrderModel();
+        $db = \Config\Database::connect();
+        $builder = $db->table('orders');
+        $builder->select('order_id, user_id, pickup_location, destination_location, created_at');
+        $builder->where('status', 'pending');
+        $query = $builder->get();
+
+        foreach($query->getResultArray() as $row)
+        {
+            $result[] = $row;
+        }
 
         $available_orders = 
         [
-            'available_orders' => $ordermodel->where('status', 'pending')->findAll()
-
+            'available_orders' => $result
         ];
         
         return view('delivery_person/available_orders', $available_orders);
+    }
+
+    public function acceptOrder() // The delivery person accepts an order, so we update the database and add the order to the session
+    {
+        $session = session();
+        
+        if(isset($_POST['acceptorder_submit'])) // If the delivery person accepted the order on the form on the available_orders page
+        {
+            $orderDeliveryPersonModel = new OrderDeliveryPersonModel();
+            $orderModel = new OrderModel();
+
+            $data = 
+            [
+                'order_id' => $_POST['acceptorder_order_id'],
+                'dp_id' => $session->get('dp_id')
+            ];
+
+            $is_accepted = $orderDeliveryPersonModel->insert($data, true);
+
+            if($is_accepted) // The order_deliveryperson table has been inserted to
+            {
+                $update_data = 
+                [
+                    'status' => 'accepted'
+                ];
+                
+                $is_updated = $orderModel->update($_POST['acceptorder_order_id'], $update_data);
+
+                if($is_updated) // The orders table has been updated
+                {
+                    $session->set('order_id', $_POST['acceptorder_order_id']);
+                    echo '<script>alert("Order Accepted")</script>';
+                    return view('delivery_person/fulfill_order');
+                }
+
+                else
+                {
+                    echo '<script>alert("Order Update Failed")</script>';
+                    return $this->viewAvailableOrders();
+                }             
+            }
+
+            else
+            {
+                echo '<script>alert("Order failed to accept")</script>';
+                return $this->viewAvailableOrders();
+            }
+        }
+    }
+
+    public function fulfillOrder()
+    {
+        return view('delivery_person/fulfill_order');
     }
 }
