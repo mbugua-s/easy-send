@@ -10,7 +10,7 @@
     <?php if($order['status'] == 'pending'): ?>
       <h2>Your order is pending</h2>
 
-      <h4>We're waiting for one of our delivery persons to accept your order.\n Here are your order's details:</h4>
+      <h4>We're waiting for one of our delivery persons to accept your order. Here are your order's details:</h4>
 
       <p>Time the order was placed : <?= $order['created_at']?></p>
       <p>Pick-Up location: <?= $order['pickup_location']?></p>

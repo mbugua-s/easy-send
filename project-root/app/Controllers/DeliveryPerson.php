@@ -182,6 +182,7 @@ class DeliveryPerson extends User
         $builder = $db->table('orders');
         $builder->select('order_id, user_id, pickup_location, destination_location, created_at');
         $builder->where('status', 'pending');
+        $builder->where('is_paid', 1);
         $query = $builder->get();
 
         foreach($query->getResultArray() as $row)
