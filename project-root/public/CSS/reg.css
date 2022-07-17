@@ -30,6 +30,7 @@ body
 
 img
     {
+        position: sticky;
         border-top-left-radius: 30px;
         border-bottom-left-radius: 30px;
     }

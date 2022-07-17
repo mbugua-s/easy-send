@@ -1,6 +1,11 @@
-img
+body{
+    font-family: "Times New Roman", Times, serif;
+}
+
+.accept img
 {
     margin: auto;
-    height: 10%;
-    width: 10%;
+    height: 30%;
+    width: 30%;
 }
+
