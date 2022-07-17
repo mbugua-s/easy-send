@@ -189,10 +189,23 @@ class DeliveryPerson extends User
             $result[] = $row;
         }
 
-        $available_orders = 
-        [
-            'available_orders' => $result
-        ];
+        if(isset($result))
+        {
+            $available_orders = 
+            [
+                'available_orders' => $result
+            ];
+            
+            return view('delivery_person/available_orders', $available_orders);
+        }
+
+        else
+        {
+            $available_orders = 
+            [
+                'available_orders' => null
+            ];
+        }
         
         return view('delivery_person/available_orders', $available_orders);
     }

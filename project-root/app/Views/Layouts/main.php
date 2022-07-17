@@ -12,7 +12,7 @@
 
 <body>
     <header>
-        <p></p>
+        <a href = "/user/logOut">Log Out</a>
     </header>
     
     <main>

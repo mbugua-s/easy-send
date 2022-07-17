@@ -178,8 +178,10 @@ class User extends BaseController
     {
         $orderModel = new OrderModel();
         $existing_order = $orderModel->where('user_id', $user_id)
-                                     ->where('status', 'accepted')
-                                     ->orWhere('status', 'pending')
+                                     ->groupStart()
+                                        ->where('status', 'accepted')
+                                        ->orWhere('status', 'pending')
+                                     ->groupEnd()
                                      ->orderBy('order_id', 'DESC')
                                      ->findAll(1);
         
@@ -198,13 +200,15 @@ class User extends BaseController
     {
         $db = \Config\Database::connect();
         $builder = $db->table('orders');
-        $builder->select('orders.order_id');
-        $builder->join('order_deliveryperson', 'orders.order_id = order_deliveryperson.order_id');
-        $builder->where('dp_id', $dp_id);
-        $builder->where('status', 'pending');
-        $builder->orWhere('status', 'accepted');
-        $builder->orderBy('orders.order_id', 'DESC');
-        $builder->limit(1);
+        $builder->select('orders.order_id')
+                ->join('order_deliveryperson', 'orders.order_id = order_deliveryperson.order_id', "inner")
+                ->where('order_deliveryperson.dp_id', $dp_id)
+                ->groupStart()
+                    ->where('status', 'pending')
+                    ->orWhere('status', 'accepted')
+                ->groupEnd()
+                ->orderBy('orders.order_id', 'DESC')
+                ->limit(1);
         $query = $builder->get();
 
         foreach($query->getResultArray() as $row)
@@ -212,7 +216,7 @@ class User extends BaseController
             $order[] = $row;
         }
 
-        if($order[0])
+        if(isset($order[0]))
         {
             return $order[0]['order_id'];
         }
