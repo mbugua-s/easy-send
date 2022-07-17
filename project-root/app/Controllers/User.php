@@ -96,7 +96,7 @@ class User extends BaseController
     {
         $session = session();
         $session->destroy();
-        return view('user/log_in');
+        return view('user/home');
     }
 
     public function editProfile() // Edit the details of customers and admins
@@ -194,7 +194,7 @@ class User extends BaseController
         }
     }
 
-    private function checkForExistingDPOrder($dp_id) // Check whether the delivery person has an ongoing order. If they do, add the order_id to the session
+    public function checkForExistingDPOrder($dp_id) // Check whether the delivery person has an ongoing order. If they do, add the order_id to the session
     {
         $db = \Config\Database::connect();
         $builder = $db->table('orders');
@@ -212,7 +212,7 @@ class User extends BaseController
             $order[] = $row;
         }
 
-        if($order[0])
+        if($order)
         {
             return $order[0]['order_id'];
         }

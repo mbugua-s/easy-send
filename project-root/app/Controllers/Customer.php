@@ -62,7 +62,7 @@ class Customer extends User
 
         else // Customer viewing the page for the first time
         {
-            return view('customer/register');
+            return view('user/register');
         }
         
     }
