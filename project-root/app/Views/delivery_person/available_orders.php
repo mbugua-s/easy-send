@@ -7,6 +7,7 @@
 <?= $this->endSection() ?>
 
 <?= $this->section('main_content') ?>
+<?php if(isset($available_orders)): ?>
     <table class="table table-hover">
         <thead>
             <tr>
@@ -40,6 +41,9 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+<?php else: ?>
+    <h3>There are no available orders right now</h3>
+<?php endif; ?>
 <?= $this->endSection() ?>
 
 
