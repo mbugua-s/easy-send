@@ -13,8 +13,8 @@ class OrderModel extends Model
 
     protected $returnType     = 'array';
     protected $useSoftDeletes = true;
-
-    protected $allowedFields = ['user_id', 'pickup_location', 'destination_location', 'status', 'is_paid'];
+    
+    protected $allowedFields = ['user_id', 'pickup_area', 'pickup_street_name', 'pickup_estate', 'pickup_house_no', 'pickup_comment', 'destination_area', 'destination_street_name', 'destination_estate', 'destination_house_no', 'destination_comment', 'destination_phone_no', 'status', 'is_paid'];
 
     protected $useTimestamps = true;
     protected $createdField  = 'created_at';

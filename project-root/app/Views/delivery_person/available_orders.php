@@ -12,8 +12,10 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Pick-up</th>
-                <th scope="col">Destination</th>
+                <th scope="col">Pick Up Area</th>
+                <th scope="col">Pick Up Street Name</th>
+                <th scope="col">Destination Area</th>
+                <th scope="col">Destination Street Name</th>
                 <th scope="col">Time Requested</th>
                 <th scope="col">Accept Order</th>
             </tr>

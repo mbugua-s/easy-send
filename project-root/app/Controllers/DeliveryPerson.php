@@ -180,7 +180,7 @@ class DeliveryPerson extends User
     {
         $db = \Config\Database::connect();
         $builder = $db->table('orders');
-        $builder->select('order_id, user_id, pickup_location, destination_location, created_at');
+        $builder->select('order_id, user_id, pickup_area, pickup_street_name, destination_area, destination_street_name, created_at');
         $builder->where('status', 'pending');
         $builder->where('is_paid', 1);
         $query = $builder->get();

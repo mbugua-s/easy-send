@@ -80,8 +80,17 @@ class Customer extends User
             $order_data = 
             [
                 'user_id' => $session->get('user_id'),
-                'pickup_location' => $_POST['order_pickup'],
-                'destination_location' => $_POST['order_destination'],
+                'pickup_area' => $_POST['order_pickup_area'],
+                'pickup_street_name' => $_POST['order_pickup_street_name'],
+                'pickup_estate' => $_POST['order_pickup_estate'],
+                'pickup_house_no' => $_POST['order_pickup_house'],
+                'pickup_comment' => $_POST['order_pickup_comment'],
+                'destination_area' => $_POST['order_destination_area'],
+                'destination_street_name' => $_POST['order_destination_street_name'],
+                'destination_estate' => $_POST['order_destination_estate'],
+                'destination_house_no' => $_POST['order_destination_house'],
+                'destination_comment' => $_POST['order_destination_comment'],
+                'destination_phone_no' => $_POST['order_destination_phone'],
                 'status' => 'pending',
                 'is_paid' => false
             ];
@@ -137,7 +146,7 @@ class Customer extends User
 
         $db = \Config\Database::connect();
         $builder = $db->table('orders');
-        $builder->select('pickup_location, destination_location, created_at, status');
+        $builder->select('pickup_area, pickup_street_name, pickup_estate, pickup_house_no, pickup_comment, destination_area, destination_street_name, destination_estate, destination_house_no, destination_comment, destination_phone_no, status, created_at');
         $builder->where('user_id', $session->get('user_id'));
         $builder->orderBy('order_id', 'DESC');
         $builder->limit(1);
