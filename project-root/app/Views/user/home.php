@@ -18,7 +18,7 @@
 body {font-family: "Times New Roman", Times, serif;}
 
 /* Full-width input fields */
-input[type=text], input[type=password] 
+input[type=text], input[type=password], input[type=number], input[type=email], input[type=file]
 {
   width: 100%;
   padding: 10px 20px;
@@ -143,6 +143,38 @@ span.psw {
   }
 }
 
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: whitesmoke;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+  cursor: pointer;
+
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 </style>
     </head>
 
@@ -154,6 +186,7 @@ span.psw {
     <div class="imgcontainer">
       <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
       <img src="/images/avatar.png" alt="Avatar" class="avatar">
+      <h4>Log In</h4>
     </div>
 
     <div class="container">
@@ -188,6 +221,83 @@ window.onclick = function(event) {
 }
 </script>
 
+<div id="id02" class="modal">
+  
+  <form class="modal-content animate" action="/customer/register" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="/images/avatar.png" alt="Avatar" class="avatar">
+      <h3>Welcome</h3>
+    </div>
+
+    <div class="container">
+      <input type =  "text" placeholder="First Name" required class="form-control my-3 p-2" name="register_firstname">
+
+      <input type =  "text" placeholder="Last Name" required class="form-control my-3 p-2" name="register_lastname">
+
+      <input type =  "email" placeholder="Email Address" required class="form-control my-3 p-2" name="register_email">
+      
+      <input type =  "password" placeholder="Password" required class="form-control my-3 p-2" name="register_password">
+
+      <input type =  "number" placeholder="Phone Number" required class="form-control my-3 p-2" name="register_number">
+
+      <input type =  "text" placeholder="Your Address" required class="form-control my-3 p-2" name="register_location">
+
+      <button type = "submit" name = "register_submit" class="btn1 mt-2 mb-3" value = "REGISTER">Register</button> 
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
+    </div>
+
+  </form>
+</div>
+
+
+<div id="id03" class="modal">
+  
+  <form class="modal-content animate" action="/deliveryperson/register" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="/images/avatar.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <input type = "text" placeholder="First Name" required class="form-control my-3 p-2" name = "register_firstname">
+
+      <input type = "text" placeholder="Last Name" required class="form-control my-3 p-2" name = "register_lastname">
+
+      <input type = "email" placeholder="Email Address" required class="form-control my-3 p-2" name = "register_email">
+
+      <input type = "password" placeholder="Password" required class="form-control my-3 p-2" name = "register_password">
+
+      <input type = "number" placeholder="Phone Number" required class="form-control my-3 p-2" name = "register_number">
+
+      <input type = "text" placeholder="Your Address" required class="form-control my-3 p-2" name = "register_location">
+
+      <input type = "file" placeholder="Your Profile Photo" required class="form-control my-3 p-2" name = "register_photo">
+
+      <input type = "text" placeholder="Your City of Operation" required class="form-control my-3 p-2" name = "register_city">
+
+      <button type = "submit" name = "register_submit" class="btn1 mt-2 mb-3" value = "REGISTER">Register</button> 
+
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id03').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw"><a href="#"></a></span>
+    </div>
+  </form>
+</div>
+
+
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container px-5">
@@ -201,7 +311,16 @@ window.onclick = function(event) {
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item"><a class="nav-link" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a></li>
-                        <!--<li class="nav-item"><a class="nav-link" href="/customer/register">Register</a></li>-->
+
+                        <li class="dropdown">
+                            <a class="dropbtn nav-link">Register
+                                <i class="fa fa-caret-down"></i>
+                            </a>
+                        <div class="dropdown-content">
+                            <a class="nav-link" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Customer</a>
+                            <a class="nav-link" onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Delivery Person</a>
+                        </div>
+                        </li>
                     </ul>
                 </div>
             </div>

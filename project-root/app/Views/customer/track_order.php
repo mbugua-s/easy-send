@@ -8,20 +8,22 @@
 <body>
   <div class="container w-50 p-1">
     <div class = "row no-pad">
-    <h2 class="justify-content-center text-center">Track your order</h2>
+    <h2 class="justify-content-center text-center">TRACK YOUR ORDER</h2>
     
     <?php if($order['status'] == 'pending'): ?>
-      <h2>Your order is pending</h2>
+      <div class="accept justify-content-center text-center">
+      <h3>Your order is pending</h3>
 
-      <h4>We're waiting for one of our delivery persons to accept your order.\n Here are your order's details:</h4>
+      <h4>We're waiting for one of our delivery persons to accept your order. Here are your order's details:</h4>
 
       <p>Time the order was placed : <?= $order['created_at']?></p>
       <p>Pick-Up location: <?= $order['pickup_location']?></p>
       <p>Destination location : <?= $order['destination_location']?></p>
+      </div>
 
     <?php else: ?>
       <div class="accept justify-content-center text-center">
-      <h2>Your order has been accepted!</h2>
+      <h3>Your order has been accepted!</h3>
 
       <h4>One of our delivery persons has accepted your delivery! Here are their details:</h4>
 
