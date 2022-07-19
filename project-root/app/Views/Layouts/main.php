@@ -33,8 +33,6 @@
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item"><a class="nav-link" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="/customer/register">Register</a></li>-->
-                        <li class="nav-item"><a class="nav-link" href="/user/redirectViewOrderHistory">History</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/redirectEditProfile">Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/logOut">Log Out</a></li>
                         <li class="dropdown nav-item">
                             <div class="imgcontainer">
@@ -46,7 +44,8 @@
                                 ?><i class="bi bi-caret-down-square-fill"></i>
                             </a>
                             <div class="dropdown-content">
-                            <a class="nav-link" href="/user/editProfile">Edit Profile</a>
+                            <a class="nav-link" href="/user/redirectEditProfile">Edit Profile</a>
+                            <a class="nav-link" href="/user/redirectViewOrderHistory">View History</a>
                             <a class="nav-link" href="/customer/trackOrder">Track Order</a>
                             </div>
                             </div>

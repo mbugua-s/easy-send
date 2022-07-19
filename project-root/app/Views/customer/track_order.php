@@ -6,7 +6,7 @@
 
 <?= $this->section('main_content') ?>
 <body>
-  <div class="container w-50 p-1">
+  <div class="container w-75 p-1">
     <div class = "row no-pad">
     <h3 class="heading justify-content-center text-center">TRACK YOUR ORDER</h3>
     
@@ -41,7 +41,7 @@
 
     <?php else: ?>
       <div class="accept justify-content-center text-center">
-      <h2>Your order has been accepted!</h2>
+      <h3>Your order has been accepted!</h3>
 
       <h4>One of our delivery persons has accepted your delivery! Here are their details:</h4>
 
@@ -52,14 +52,14 @@
       <h4>Your order details are :</h4>
       <p>Time the order was placed : <?= $order['created_at']?></p>
 
-      <h5>Pick Up Location Details</h5>
+      <h4 class="heading">Pick Up Location </h4>
       <p>Area: <?= $order['pickup_area']?></p>
       <p>Street Name: <?= $order['pickup_street_name']?></p>
       <p>Estate / Apartment Complex: <?= $order['pickup_estate']?></p>
       <p>House Number: <?= $order['pickup_house_no']?></p>
       <p>Additional Comment: <?= $order['pickup_comment']?></p>
 
-      <h5>Destination Location Details</h5>
+      <h4 class="heading">Destination Location </h4>
       <p>Area: <?= $order['destination_area']?></p>
       <p>Street Name: <?= $order['destination_street_name']?></p>
       <p>Estate / Apartment Complex: <?= $order['destination_estate']?></p>
