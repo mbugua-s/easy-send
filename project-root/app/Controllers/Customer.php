@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\OrderModel;
+use App\Models\PaymentModel;
 use App\Models\UserModel;
+use Config\Pager;
 
 class Customer extends User
 {
@@ -75,26 +77,59 @@ class Customer extends User
         {
             $ordermodel = new OrderModel();
 
-            $data = 
+            $order_data = 
             [
                 'user_id' => $session->get('user_id'),
-                'pickup_location' => $_POST['order_pickup'],
-                'destination_location' => $_POST['order_destination'],
+                'pickup_area' => $_POST['order_pickup_area'],
+                'pickup_street_name' => $_POST['order_pickup_street_name'],
+                'pickup_estate' => $_POST['order_pickup_estate'],
+                'pickup_house_no' => $_POST['order_pickup_house'],
+                'pickup_comment' => $_POST['order_pickup_comment'],
+                'destination_area' => $_POST['order_destination_area'],
+                'destination_street_name' => $_POST['order_destination_street_name'],
+                'destination_estate' => $_POST['order_destination_estate'],
+                'destination_house_no' => $_POST['order_destination_house'],
+                'destination_comment' => $_POST['order_destination_comment'],
+                'destination_phone_no' => $_POST['order_destination_phone'],
                 'status' => 'pending',
                 'is_paid' => false
             ];
 
-            $is_placed = $ordermodel->insert($data, true);
+            $is_placed = $ordermodel->insert($order_data, true);
 
             if($is_placed) // Order placement successful
             {
-                $session->set('order_id', $is_placed);
-                return $this->trackOrder();
+                $paymentModel = new PaymentModel();
+                $payment_data = 
+                [
+                    'order_id' => $is_placed,
+                    'payment_code' => $_POST['order_mpesa_code']
+                ];
+
+                $is_paid = $paymentModel->insert($payment_data, true);
+
+                if($is_paid)
+                {
+                    $update_order_data = 
+                    [
+                        'is_paid' => 1
+                    ];
+                    
+                    $ordermodel->update($is_placed, $update_order_data);
+                    $session->set('order_id', $is_placed);
+                    return $this->trackOrder();
+                }
+                
+                else
+                {
+                    echo "<script>alert('Order payment failed')</script>";
+                    return view('user/place_order');
+                }
             }
 
             else // Order placement failed
             {
-                echo "<script>alert('Order failed')</script>";
+                echo "<script>alert('Order placement failed')</script>";
                 return view('user/place_order');
             }
         }
@@ -111,7 +146,7 @@ class Customer extends User
 
         $db = \Config\Database::connect();
         $builder = $db->table('orders');
-        $builder->select('pickup_location, destination_location, created_at, status');
+        $builder->select('pickup_area, pickup_street_name, pickup_estate, pickup_house_no, pickup_comment, destination_area, destination_street_name, destination_estate, destination_house_no, destination_comment, destination_phone_no, status, created_at');
         $builder->where('user_id', $session->get('user_id'));
         $builder->orderBy('order_id', 'DESC');
         $builder->limit(1);

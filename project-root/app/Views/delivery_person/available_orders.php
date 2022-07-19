@@ -14,11 +14,14 @@
         }
     </style>
     <table class="table table-striped table-dark">
+        <h2 class="heading justify-content-center text-center" style="color: floralwhite;">Available Orders</h2>
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Pick-up</th>
-                <th scope="col">Destination</th>
+                <th scope="col">Pick Up Area</th>
+                <th scope="col">Pick Up Street Name</th>
+                <th scope="col">Destination Area</th>
+                <th scope="col">Destination Street Name</th>
                 <th scope="col">Time Requested</th>
                 <th scope="col">Accept Order</th>
             </tr>

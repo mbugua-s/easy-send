@@ -5,7 +5,7 @@
         <div class="container w-75 p-1">
             <div class = "row no-pad">
                 <div class= "col-lg-3 ">
-                    <img src="/profile_photos/dely.jpg" class="img-fluid" alt="">    
+                    <img src="/images/dely.jpg" class="img-fluid" alt="">    
                 </div>
                 <div class="col-lg-7 px-1 pt-3 offset-1">
                     <h1 style="font-family: Roboto;" class="col-lg-11 text-center font-weight-bold py-1 ">Edit Your Profile</h1>

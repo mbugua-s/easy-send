@@ -314,8 +314,7 @@ window.onclick = function(event) {
 
                         <li class="dropdown">
                             <a class="dropbtn nav-link">Register
-                                <i class="fa fa-caret-down"></i>
-                            </a>
+                                <i class="bi bi-caret-down-square-fill"></i></a>
                         <div class="dropdown-content">
                             <a class="nav-link" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Customer</a>
                             <a class="nav-link" onclick="document.getElementById('id03').style.display='block'" style="width:auto;">Delivery Person</a>

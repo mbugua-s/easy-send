@@ -105,6 +105,53 @@ body{
         text-decoration: none;
     }
 
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 10px 0;
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 2px;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: black;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: whitesmoke;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color:black;
+  cursor: pointer;
+
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
 body {
   margin: 0;
   font-size: var(--bs-body-font-size);
