@@ -3,12 +3,18 @@
 <?php $counter = 1; ?>
 
 <?= $this->section('css') ?>
-    <link ref = "stylesheet" href = "/CSS/available_orders.php">
+    <link ref = "stylesheet" href = "/CSS/available_orders.css">
 <?= $this->endSection() ?>
 
 <?= $this->section('main_content') ?>
 <?php if(isset($available_orders)): ?>
-    <table class="table table-hover">
+    <style>
+        body{
+            background-color: #4b4d51;
+        }
+    </style>
+    <table class="table table-striped table-dark">
+        <h2 class="heading justify-content-center text-center" style="color: floralwhite;">Available Orders</h2>
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -37,7 +43,7 @@
 
                             <?php $counter++ ?>
                         <?php endforeach; ?>
-                        <td><input type="submit" class="btn btn-success accept_button" name = "acceptorder_submit" value = "ACCEPT"></td>
+                        <td><input type="submit" class="btn btn-light accept_button" name = "acceptorder_submit" value = "ACCEPT"></td>
                     </form>
                 </tr>
             <?php endforeach; ?>

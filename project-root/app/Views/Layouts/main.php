@@ -36,6 +36,22 @@
                         <li class="nav-item"><a class="nav-link" href="/user/redirectViewOrderHistory">History</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/redirectEditProfile">Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/logOut">Log Out</a></li>
+                        <li class="dropdown nav-item">
+                            <div class="imgcontainer">
+                            <img src="/images/avatar.png" alt="Avatar" class="avatar">
+                            <a class="dropbtn nav-link">
+                                <?php
+                                if (isset($_SESSION['user_firstname']))
+                                    { echo $_SESSION['user_firstname'];}
+                                ?><i class="bi bi-caret-down-square-fill"></i>
+                            </a>
+                            <div class="dropdown-content">
+                            <a class="nav-link" href="/user/editProfile">Edit Profile</a>
+                            <a class="nav-link" href="/customer/trackOrder">Track Order</a>
+                            </div>
+                            </div>
+                            
+                        </li>
                     </ul>
                 </div>
             </div>
