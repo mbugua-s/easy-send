@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" type="text/css" href="/CSS/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/CSS/reg.css">
+    <link rel="stylesheet" type="text/css" href="/CSS/main.css">
     <link href="/CSS/styles.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?= $this->renderSection('css') ?>

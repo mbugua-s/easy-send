@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&family=Chivo&family=Sawarabi+Gothic&display=swap');
+
+header, main, footer
+{
+    font-family: 'Asap', sans-serif;
+    color: black;
+}
