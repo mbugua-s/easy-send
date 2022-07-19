@@ -152,7 +152,7 @@ class User extends BaseController
         }
     }
 
-    private function redirectEditProfileRequest() // Check the role of the user and redirect them to their edit profile page
+    public function redirectEditProfile() // Check the role of the user and redirect them to their edit profile page
     {
         $session = session();
         
@@ -160,7 +160,7 @@ class User extends BaseController
         {
             case 1:
                 $customer = new Customer;
-                return $customer->placeOrder();
+                return $customer->editProfile();
                 break;
 
             case 2:
@@ -169,7 +169,25 @@ class User extends BaseController
 
             case 3:
                 $deliveryperson = new Deliveryperson();
-                return $deliveryperson->viewAvailableOrders();
+                return $deliveryperson->editProfile();
+                break;
+        }
+    }
+
+    public function redirectViewOrderHistory() // Check the role of the user and redirect them to their edit profile page
+    {
+        $session = session();
+        
+        switch($session->get('user_role'))
+        {
+            case 1:
+                $customer = new Customer;
+                return $customer->viewOrderHistory();
+                break;
+
+            case 3:
+                $deliveryperson = new Deliveryperson();
+                return $deliveryperson->viewOrderHistory();
                 break;
         }
     }
@@ -196,7 +214,7 @@ class User extends BaseController
         }
     }
 
-    public function checkForExistingDPOrder($dp_id) // Check whether the delivery person has an ongoing order. If they do, add the order_id to the session
+    private function checkForExistingDPOrder($dp_id) // Check whether the delivery person has an ongoing order. If they do, add the order_id to the session
     {
         $db = \Config\Database::connect();
         $builder = $db->table('orders');

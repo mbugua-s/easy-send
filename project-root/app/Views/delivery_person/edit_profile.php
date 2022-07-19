@@ -1,5 +1,9 @@
 <?= $this->extend('layouts/main.php') ?>
 
+<?= $this->section('css') ?>
+  <link rel = "stylesheet" href = "/CSS/edit_profile.css">
+<?= $this->endSection() ?>
+
 <?= $this->section('main_content') ?>
     <body>       
         <div class="container w-75 p-1">

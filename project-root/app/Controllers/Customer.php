@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\ConfirmationPhotoModel;
+use App\Models\OrderDeliveryPersonModel;
 use App\Models\OrderModel;
 use App\Models\PaymentModel;
 use App\Models\UserModel;
@@ -179,5 +181,43 @@ class Customer extends User
         $user_order['order'] = $order_details;
 
         return view('customer/track_order', $user_order);
+    }
+
+    public function viewOrderHistory()
+    {
+        $session = session();
+        
+        $db = \Config\Database::connect();
+        $builder = $db->table('orders');
+        $builder->select('orders.created_at, pickup_area, pickup_estate, destination_area, destination_estate');
+        $builder->join('order_deliveryperson', 'order_deliveryperson.order_id = orders.order_id', 'inner');
+        $builder->join('delivery_person', 'order_deliveryperson.dp_id = delivery_person.dp_id', 'inner');
+        $builder->join('user', 'user.user_id = delivery_person.user_id', 'inner');
+        $builder->where('status', 'completed');
+        $builder->where('orders.user_id', $session->get('user_id'));
+        $query = $builder->get();
+
+        foreach($query->getResultArray() as $row)
+        {
+            $result[] = $row;
+        }
+
+        if(isset($result))
+        {
+            $order = 
+            [
+                'order' => $result
+            ];
+        }
+
+        else
+        {
+            $order = 
+            [
+                'order' => 'no orders'
+            ];
+        }
+            
+        return view('user/order_history', $order);
     }
 }

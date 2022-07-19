@@ -33,6 +33,8 @@
                         <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
                         <li class="nav-item"><a class="nav-link" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</a></li>
                         <!--<li class="nav-item"><a class="nav-link" href="/customer/register">Register</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="/user/redirectViewOrderHistory">History</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/redirectEditProfile">Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="/user/logOut">Log Out</a></li>
                     </ul>
                 </div>

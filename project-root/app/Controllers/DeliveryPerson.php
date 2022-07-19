@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ConfirmationPhotoModel;
 use App\Models\DeliveryPersonModel;
 use App\Models\OrderDeliveryPersonModel;
 use App\Models\OrderModel;
@@ -241,7 +242,7 @@ class DeliveryPerson extends User
                 {
                     $session->set('order_id', $_POST['acceptorder_order_id']);
                     echo '<script>alert("Order Accepted")</script>';
-                    return view('delivery_person/fulfill_order');
+                    return $this->fulfillOrder();
                 }
 
                 else
@@ -261,6 +262,105 @@ class DeliveryPerson extends User
 
     public function fulfillOrder()
     {
-        return view('delivery_person/fulfill_order');
+        $session = session();
+        $orderModel = new OrderModel();
+
+        if(isset($_POST['confirmation_submit']))
+        {
+            $confirmationPhotoModel = new ConfirmationPhotoModel();
+
+            $file = $this->request->getFile('confirmation_photo');
+
+            if($file->isValid() && !$file->hasMoved()) 
+            {
+                $file->move('./confirmation_photos', 'order_'.$session->get('order_id').'.'.$file->getExtension());
+            }
+
+            else
+            {
+                echo '<script>alert("Invalid File")</script>';
+                return view('delivery_person/fulfill_order');
+            }
+
+            $update_data = 
+            [
+                'status' => 'completed'
+            ];
+
+            $is_updated = $orderModel->update($session->get('order_id'), $update_data);
+
+            if($is_updated)
+            {
+                $data = 
+                [
+                    'order_id' => $session->get('order_id'),
+                    'confirmation_photo' => $file->getName()
+                ];
+
+                $is_inserted = $confirmationPhotoModel->insert($data, true);
+
+                if($is_inserted)
+                {
+                    echo "Order completed";
+                }
+
+                else
+                {
+                    echo "Confirmation photo upload failed";
+                }
+            }
+
+            else
+            {
+                echo "Order update failed";
+            }
+            
+        }
+
+        else
+        {
+            $order = 
+            [
+                'order' => $orderModel->find($session->get('order_id'))
+            ];
+            
+            return view('delivery_person/fulfill_order', $order);
+        }
+    }
+
+    public function viewOrderHistory()
+    {
+        $session = session();
+        
+        $db = \Config\Database::connect();
+        $builder = $db->table('orders');
+        $builder->select('orders.updated_at, pickup_area, pickup_estate, destination_area, destination_estate');
+        $builder->join('order_deliveryperson', 'order_deliveryperson.order_id = orders.order_id', 'inner');
+        $builder->where('status', 'completed');
+        $builder->where('order_deliveryperson.dp_id', $session->get('dp_id'));
+        $query = $builder->get();
+
+        foreach($query->getResultArray() as $row)
+        {
+            $result[] = $row;
+        }
+
+        if(isset($result))
+        {
+            $order = 
+            [
+                'order' => $result
+            ];
+        }
+
+        else
+        {
+            $order = 
+            [
+                'order' => 'no orders'
+            ];
+        }
+            
+        return view('user/order_history', $order);
     }
 }
