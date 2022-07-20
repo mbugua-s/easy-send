@@ -188,8 +188,9 @@ class Customer extends User
         $session = session();
         
         $db = \Config\Database::connect();
-        $builder = $db->table('orders');
-        $builder->select('orders.created_at, pickup_area, pickup_estate, destination_area, destination_estate');
+        $builder = $db->table('confirmation_photo');
+        $builder->select('orders.created_at, pickup_area, pickup_estate, destination_area, destination_estate, confirmation_photo');
+        $builder->join('orders', 'confirmation_photo.order_id = orders.order_id', 'inner');
         $builder->join('order_deliveryperson', 'order_deliveryperson.order_id = orders.order_id', 'inner');
         $builder->join('delivery_person', 'order_deliveryperson.dp_id = delivery_person.dp_id', 'inner');
         $builder->join('user', 'user.user_id = delivery_person.user_id', 'inner');
