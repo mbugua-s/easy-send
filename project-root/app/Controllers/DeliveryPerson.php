@@ -301,7 +301,7 @@ class DeliveryPerson extends User
 
                 if($is_inserted)
                 {
-                    $session->set($user_data);                   
+                                      
                     echo '<script>alert("Order Completed")</script>';
                     return $this->viewAvailableOrders();
                 }

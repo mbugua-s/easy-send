@@ -353,7 +353,7 @@ window.onclick = function(event) {
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="feature bg-dark bg-gradient text-white rounded-3 mb-3"><i class="bi bi-card-list"></i></div>
                         <h2 class="h4 fw-bolder">Place Your Order</h2>
-                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                        <p>Key in the pick up location details together with the destination location details and you will be paired up with one of our delivery persons as soon as possible.</p>
                         <a class="text-decoration-none" href="#!">
                             Call to action
                             <i class="bi bi-arrow-right"></i>
@@ -362,7 +362,7 @@ window.onclick = function(event) {
                     <div class="col-lg-4 mb-5 mb-lg-0">
                         <div class="feature bg-dark bg-gradient text-white rounded-3 mb-3"><i class="bi bi-cash"></i></div>
                         <h2 class="h4 fw-bolder">Payment Processing</h2>
-                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                        <p>As one of our delivery persons reaches out to you, go ahead and make payments and input the payment code int the required field</p>
                         <a class="text-decoration-none" href="#!">
                             Call to action
                             <i class="bi bi-arrow-right"></i>
@@ -371,7 +371,7 @@ window.onclick = function(event) {
                     <div class="col-lg-4">
                         <div class="feature bg-dark bg-gradient text-white rounded-3 mb-3"><i class="bi bi-truck"></i></div>
                         <h2 class="h4 fw-bolder">Succcessful Delivery</h2>
-                        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+                        <p>Before you know it your delivery will be completed. We would like to get your feedback in the section below.</p>
                         <a class="text-decoration-none" href="#!">
                             Call to action
                             <i class="bi bi-arrow-right"></i>
@@ -396,8 +396,8 @@ window.onclick = function(event) {
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 "><i class="bi bi-chat-right-quote-fill text-dark fs-1"></i></div>
                                     <div class="ms-4">
-                                        <p class="mb-1">Thank you for putting together such a great product. We loved working with you and the whole team, and we will be recommending you to others!</p>
-                                        <div class="small text-muted">- Client Name, Location</div>
+                                        <p class="mb-1">This is the most handy application! So easy to use. All the delivery persons I've had soo far have been very effecient, polite, and the deliveries have been super easy.</p>
+                                        <div class="small text-muted">- Karla Harris, Embakasi</div>
                                     </div>
                                 </div>
                             </div>
@@ -408,8 +408,8 @@ window.onclick = function(event) {
                                 <div class="d-flex">
                                     <div class="flex-shrink-0"><i class="bi bi-chat-right-quote-fill text-dark fs-1"></i></div>
                                     <div class="ms-4">
-                                        <p class="mb-1">The whole team was a huge help with putting things together for our company and brand. We will be hiring them again in the near future for additional work!</p>
-                                        <div class="small text-muted">- Client Name, Location</div>
+                                        <p class="mb-1">Convenient and fast solution for getting things delivered accross town. Easy to pay through the application.</p>
+                                        <div class="small text-muted">- Radi Sainyum, Milimani</div>
                                     </div>
                                 </div>
                             </div>
@@ -487,7 +487,7 @@ window.onclick = function(event) {
         </section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
-            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+            <div class="container px-5"><p class="m-0 text-center text-white">Copyright &copy; Easy Send 2022</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -31,7 +31,7 @@
                             <td><?= $counter ?></td>
                             <?php foreach($order_properties as $order_properties_key => $order_properties_val) :?>
                                 <?php if($order_properties_key == 'confirmation_photo') :?>
-                                    <td><button type="button" class="btn btn-primary open_photo" onclick='getImageLink("<?=$order_properties_val?>")' data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <td><button type="button" class="btn btn-primary open_photo bg-dark" onclick='getImageLink("<?=$order_properties_val?>")' data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             View
                                         </button>
                                     </td>                                   
