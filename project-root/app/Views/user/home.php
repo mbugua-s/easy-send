@@ -10,9 +10,10 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <link rel="stylesheet" type="text/css" href="/CSS/modal.css">
         <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
-       
+        <link rel="stylesheet" type="text/css" href="/CSS/main.css">
+        <link href="/CSS/styles.css" rel="stylesheet" />
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 

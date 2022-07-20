@@ -6,16 +6,16 @@
 
 <?= $this->section('main_content') ?>
     <body>       
-        <div class="container w-75 p-1">
+        <div class="container w-50 p-1">
             <div class = "row no-pad">
                 <div class= "col-lg-3 ">
-                    <img src="/images/dely.jpg" class="img-fluid" alt="">    
+                      
                 </div>
                 <div class="col-lg-7 px-1 pt-3 offset-1">
-                    <h1 style="font-family: Roboto;" class="col-lg-11 text-center font-weight-bold py-1 ">Edit Your Profile</h1>
+                    <h1  class="justify-content-center col-lg-11  text-center font-weight-bold py-1 ">Edit Your Profile</h1>
 
             <form method = 'POST' action = '/DeliveryPerson/editProfile/' enctype="multipart/form-data">
-                <img src = <?="/profile_photos/".$delivery_person_data['dp_profile_photo']?>>
+                <img class="offset-3" src = <?="/profile_photos/".$delivery_person_data['dp_profile_photo']?> >
                 <div class="form-row">
                 <div class="offset-2 col-lg-7">
                 <input type =  "text" placeholder="First Name" required class="form-control my-3 p-2" name="edit_firstname" value = <?=$user_data['user_firstname']?>>
@@ -47,6 +47,7 @@
                 <div class="offset-2 col-lg-7">
                 <input type =  "number" placeholder="Phone Number" required class="form-control my-3 p-2" name="edit_number" value = <?=$user_data['user_number']?>>
                 </div>
+                </div>
 
                 <div class="form-row">
                 <div class="offset-2 col-lg-7">
@@ -54,10 +55,17 @@
                 </div>
                 </div>
 
-                <label>Your Profile Photo: </label>
-                <input type = "file" name = "edit_photo">
+                <div class="form-row">
+                <div class="offset-2 col-lg-7">
+                <input type = "file" placeholder="Your Profile Photo" required class="form-control my-3 p-2" name = "edit_photo">
+                </div>
+                </div>
 
-                <input type = "text" name = "edit_city" value = <?=$delivery_person_data['dp_city']?>>
+                <div class="form-row">
+                <div class="offset-2 col-lg-7">
+                <input type = "text" required class="form-control my-3 p-2" name = "edit_city" value = <?=$delivery_person_data['dp_city']?>>
+                </div>
+                </div>
 
                 <div class="form-row">
                 <div class="offset-2 col-lg-7">

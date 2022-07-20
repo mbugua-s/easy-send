@@ -55,7 +55,8 @@ class User extends BaseController
                         break;
 
                     case 2:
-                        return view('user/home');
+                        $admin = new Admin();
+                        return $admin->viewGeneralStatistics();
                         break;
 
                     case 3:
