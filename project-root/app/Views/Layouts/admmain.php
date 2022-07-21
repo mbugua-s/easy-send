@@ -45,11 +45,9 @@
                                 ?><i class="bi bi-caret-down-square-fill"></i>
                             </a>
                             <div class="dropdown-content">
-                            <a class="nav-link" href="/user/redirectEditProfile">Edit Profile</a>
-                            <a class="nav-link" href="/user/redirectViewOrderHistory">View History</a>
-                            <a class="nav-link" href="/customer/trackOrder">Track Order</a>
-                            <a class="nav-link" href="/deliveryperson/fulfillOrder">Fulfill Order</a>
-                            
+                            <a class="nav-link" href="/admin/">Edit Profiles</a>
+                            <a class="nav-link" href="/admin/viewGeneralStatistics">General Statistics</a>
+                            <a class="nav-link" href="/admin/">Add an Admin</a>
                             </div>
                             </div>
                             
@@ -58,18 +56,16 @@
                 </div>
             </div>
         </nav>
+        <h2 class="justify-content-center text-center">Welcome Admin</h2>
         <p></p>
     </header>
     
     <main>
         <?= $this->renderSection('main_content') ?>
+
     </main>
     
     <footer>
         <p></p>
     </footer>
-
-    <?= $this->renderSection('JS') ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>

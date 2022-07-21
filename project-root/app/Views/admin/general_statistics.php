@@ -1,14 +1,20 @@
-<?= $this->extend('layouts/main.php') ?>
+<?= $this->extend('layouts/admmain.php') ?>
+
+<?= $this->section('css') ?>
+  <link rel = "stylesheet" href = "/CSS/general_statistics.css">
+<?= $this->endSection() ?>
 
 <?= $this->section('main_content') ?>
 
 <?php foreach($statistics as $stat_key => $stat_val) :?>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><?= $stat_key?></h5>
-            <p class="card-text"><?= $stat_val?></p>
-        </div>
-    </div>
+   
+            <div class="card gx-5" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><?= $stat_key?></h5>
+                    <p class="card-text"><?= $stat_val?></p>
+                </div>
+            </div>
+     
 <?php endforeach; ?>
 
 <?= $this->endSection() ?>
