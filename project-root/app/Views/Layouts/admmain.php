@@ -56,7 +56,7 @@
                 </div>
             </div>
         </nav>
-        <h2 class="justify-content-center text-center">Welcome Admin</h2>
+        <h2 class="justify-content-center text-center">Welcome <?= $_SESSION['user_firstname']?></h2>
         <p></p>
     </header>
     

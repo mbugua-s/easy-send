@@ -1,0 +1,33 @@
+.card
+{
+    display: inline-block;
+    width: 25rem;
+    height: 10rem;
+    background-color: rgb(33, 37, 41);
+    color: white;
+    margin: 1rem;
+}
+
+/* .card-body
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
+
+.card-content
+{
+    display: inline-block;
+    margin: auto;
+}
+
+.card p
+{
+    font-size: 4rem;
+}
+
+.all_cards
+{
+    max-width: 900px;
+    margin: auto;
+}

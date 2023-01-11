@@ -28,7 +28,7 @@
             
             <input type = "text" placeholder="House No " required class="form-control my-3 p-2" name = "order_pickup_house">
             
-            <input type = "textarea" placeholder="Additional Comment" required class="form-control my-3 p-2" name = "order_pickup_comment" value = "None">
+            <input type = "textarea" placeholder="Additional Comment" required class="form-control my-3 p-2" name = "order_pickup_comment" placeholder = 'Additional Comments'>
         </fieldset>
         </div>
     
@@ -49,7 +49,7 @@
             
             <input type = "text" placeholder="House No" required class="form-control my-3 p-2" name = "order_destination_house">
             
-            <input type = "textarea" placeholder="Additional Comment" required class="form-control my-3 p-2" name = "order_destination_comment" value = "None">
+            <input type = "textarea" placeholder="Additional Comment" required class="form-control my-3 p-2" name = "order_destination_comment" placeholder = 'Additional Comments'>
             
             <input type = "number" placeholder="Receiver Phone Number" required class="form-control my-3 p-2" name = "order_destination_phone" value = "null">
         </fieldset>
