@@ -1,7 +1,7 @@
 Presentation Feedback:
 
 The project is better suited to being a mobile application.
-Location information should be obtained from the map, not as inputs.
+Location information should be obtained from the map, not as user inputs.
 The app needs a proper payment method - either the MPESA API or Stripe.
 The order should be tracked through a map.
 Using order information such as distance to calculate the cost of every delivery instead of a flat fee.
@@ -12,6 +12,6 @@ Ensuring that the delivered package reaches the receiver - avoid package stealin
 Extra stuff to add:
 
 Validation for the form inputs.
-Hosting the project.
-Create a better README.
+// Hosting the project.
+// Create a better README.
 Using emails for features such as verifying an account or changing passwords.
